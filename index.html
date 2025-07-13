@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Results App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @media print {
+        /* Hide form and unnecessary controls */
+        form,
+        #search,
+        label[for="search"],
+        #printBtn,
+        th:last-child,
+        td:last-child {
+          display: none !important;
+        }
+
+        /* Remove background and make table elements print-friendly */
+        body {
+          background: white;
+        }
+
+        .rounded,
+        .rounded-sm,
+        .rounded-md,
+        .rounded-lg,
+        .rounded-xl,
+        .rounded-2xl,
+        .rounded-3xl,
+        .rounded-full {
+          border-radius: 0 !important;
+        }
+
+        .shadow,
+        .shadow-sm,
+        .shadow-md,
+        .shadow-lg,
+        .shadow-xl,
+        .shadow-2xl,
+        .drop-shadow,
+        .drop-shadow-sm,
+        .drop-shadow-md,
+        .drop-shadow-lg {
+          box-shadow: none !important;
+        }
+
+        /* Disable overflow clipping */
+        .overflow-x-auto,
+        .overflow-y-auto,
+        .max-h-\[400px\] {
+          overflow: visible !important;
+          max-height: none !important;
+        }
+
+        /* Remove sticky header shadow */
+        thead {
+          box-shadow: none !important;
+        }
+
+        .bg-gray-200 {
+          background-color: white !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 p-4 sm:p-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-6 text-center">
+        <h1 class="hidden sm:block text-2xl sm:text-3xl font-medium mb-2">
+          MORDANGA SEKENDARIA FAZIL MADRASAH
+        </h1>
+        <p
+          class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-600 uppercase tracking-wide"
+        >
+          Result of Dakhil-10 Pretest, 2025
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form
+        id="entryForm"
+        class="bg-white p-4 sm:p-6 rounded shadow mb-4 space-y-4"
+      >
+        <!-- Name and Roll Fields -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Student Name -->
+          <div class="relative">
+            <input
+              type="text"
+              name="s_name"
+              id="s_name"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Student Name"
+            />
+            <label
+              for="s_name"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+            >
+              Student Name
+            </label>
+          </div>
+
+          <!-- Roll Number -->
+          <div class="relative">
+            <input
+              type="text"
+              name="roll"
+              id="roll"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Roll Number (unique)"
+            />
+            <label
+              for="roll"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+            >
+              Roll Number (unique)
+            </label>
+          </div>
+        </div>
+
+        <!-- Subject Inputs -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          <!-- Subject Input Template -->
+          <!-- Repeat for each subject field -->
+
+          <!-- Example: Kuran & Tajvid -->
+          <div class="relative">
+            <input
+              type="text"
+              name="kuran_tajvid"
+              id="kuran_tajvid"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Kuran & Tajvid"
+            />
+            <label
+              for="kuran_tajvid"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+            >
+              Kuran & Tajvid
+            </label>
+          </div>
+
+          <!-- Copy-paste the block above for each subject below, updating name/id/label/placeholder -->
+          <div class="relative">
+            <input
+              type="text"
+              name="akaid_fikah"
+              id="akaid_fikah"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Akaid & Fikah"
+            />
+            <label
+              for="akaid_fikah"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Akaid & Fikah</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="hadis"
+              id="hadis"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Hadis"
+            />
+            <label
+              for="hadis"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Hadis</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="arabic1"
+              id="arabic1"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Arabic 1"
+            />
+            <label
+              for="arabic1"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Arabic 1</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="arabic2"
+              id="arabic2"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Arabic 2"
+            />
+            <label
+              for="arabic2"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Arabic 2</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="gmath"
+              id="gmath"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Math"
+            />
+            <label
+              for="gmath"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Math</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="english1"
+              id="english1"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="English 1"
+            />
+            <label
+              for="english1"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >English 1</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="english2"
+              id="english2"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="English 2"
+            />
+            <label
+              for="english2"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >English 2</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="bengali1"
+              id="bengali1"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Bengali 1"
+            />
+            <label
+              for="bengali1"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Bengali 1</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="bengali2"
+              id="bengali2"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Bengali 2"
+            />
+            <label
+              for="bengali2"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Bengali 2</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="ishistory_physics"
+              id="ishistory_physics"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Islamic History / Physics"
+            />
+            <label
+              for="ishistory_physics"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Islamic History / Physics</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="phedu_bio"
+              id="phedu_bio"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Physical Education / Biology"
+            />
+            <label
+              for="phedu_bio"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Physical Education / Biology</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="chemistry_ict"
+              id="chemistry_ict"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Chemistry / ICT"
+            />
+            <label
+              for="chemistry_ict"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Chemistry / ICT</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="text"
+              name="ag_hmath"
+              id="ag_hmath"
+              autocomplete="off"
+              class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Agriculture / Higher Math"
+            />
+            <label
+              for="ag_hmath"
+              class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+              >Agriculture / Higher Math</label
+            >
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div
+          class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0"
+        >
+          <button
+            type="submit"
+            class="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Save / Update
+          </button>
+          <button
+            type="button"
+            id="clearBtn"
+            class="hidden sm:inline-block px-4 py-2 bg-gray-300 rounded"
+          >
+            Clear
+          </button>
+          <button
+            type="button"
+            id="printBtn"
+            class="hidden sm:inline-block w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded"
+          >
+            Print
+          </button>
+        </div>
+      </form>
+
+      <!-- Summary Section -->
+      <div
+        id="summaryStats"
+        class="hidden sm:block mb-4 bg-white p-4 rounded shadow text-sm sm:text-base"
+      >
+        <p>
+          <strong>No. of Students:</strong> <span id="totalStudents">0</span>
+        </p>
+        <p><strong>Appeared:</strong> <span id="appeared">0</span></p>
+        <p><strong>Passed:</strong> <span id="passed">0</span></p>
+        <p>
+          <strong>Percentage of Pass:</strong> <span id="percentage">0%</span>
+        </p>
+        <p><strong>GPA 5 (A+):</strong> <span id="gpa5">0</span></p>
+      </div>
+
+      <!-- Search Field Styled Like Other Inputs -->
+      <div class="relative mb-4">
+        <input
+          type="text"
+          id="search"
+          autocomplete="off"
+          placeholder="Search by roll or name"
+          class="peer w-full border border-gray-300 rounded-md px-4 pt-5 pb-2 text-sm placeholder-transparent bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <label
+          for="search"
+          class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500"
+        >
+          Search by roll or name
+        </label>
+      </div>
+
+      <!-- Table -->
+      <div class="bg-white rounded shadow overflow-x-auto">
+        <div class="max-h-[400px] overflow-y-auto relative">
+          <table class="min-w-[900px] w-full text-sm text-left">
+            <thead
+              class="bg-gray-200 text-xs sm:text-sm sticky top-0 z-10 shadow-sm"
+            >
+              <tr class="whitespace-nowrap">
+                <th class="p-2">Roll</th>
+                <th class="p-2">Name</th>
+                <th class="p-2">Total</th>
+                <th class="p-2">Pass/Fail</th>
+                <th class="p-2">Kuran</th>
+                <th class="p-2">Akaid</th>
+                <th class="p-2">Hadis</th>
+                <th class="p-2">Ar1</th>
+                <th class="p-2">Ar2</th>
+                <th class="p-2">GMath</th>
+                <th class="p-2">Eng1</th>
+                <th class="p-2">Eng2</th>
+                <th class="p-2">Ben1</th>
+                <th class="p-2">Ben2</th>
+                <th class="p-2">Hist/Phys</th>
+                <th class="p-2">PE/Bio</th>
+                <th class="p-2">Chem/ICT</th>
+                <th class="p-2">Ag/HMath</th>
+                <th class="p-2">CGPA</th>
+                <th class="p-2">Grade</th>
+                <th class="p-2 bg-yellow-300 text-black font-bold">Merit</th>
+                <th class="p-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tblBody" class="text-xs sm:text-sm"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbyDSiPMPo-dtSpuh5Fii9PYFsI1wqJPOFcA_EvH3BN6a56KF_ERmx0Tr6lTBwGFkaPH/exec"; // replace with your Apps Script web app URL
+      let allData = [],
+        editingRoll = null;
+
+      async function fetchAll() {
+        const res = await fetch(SCRIPT_URL);
+        allData = await res.json();
+        renderTable(allData);
+      }
+
+      function gradeFromMarks(m) {
+        if (m >= 80) return { point: 5.0, grade: "A+" };
+        if (m >= 70) return { point: 4.0, grade: "A" };
+        if (m >= 60) return { point: 3.5, grade: "A−" };
+        if (m >= 50) return { point: 3.0, grade: "B" };
+        if (m >= 40) return { point: 2.0, grade: "C" };
+        if (m >= 33) return { point: 1.0, grade: "D" };
+        return { point: 0.0, grade: "F" };
+      }
+      // Safe math expression evaluator
+      function evaluateExpression(expr) {
+        try {
+          const val = Function('"use strict";return (' + expr + ")")();
+          return isNaN(val) ? 0 : parseFloat(val);
+        } catch {
+          return 0;
+        }
+      }
+
+      function gradeFromCGPA(cgpa) {
+        if (cgpa === 5.0) return "A+";
+        if (cgpa >= 4.0) return "A";
+        if (cgpa >= 3.5) return "A−";
+        if (cgpa >= 3.0) return "B";
+        if (cgpa >= 2.0) return "C";
+        if (cgpa >= 1.0) return "D";
+        return "F";
+      }
+
+      function calcFields(obj) {
+        const keys = [
+          "kuran_tajvid",
+          "akaid_fikah",
+          "hadis",
+          "arabic1",
+          "arabic2",
+          "gmath",
+          "english1",
+          "english2",
+          "bengali1",
+          "bengali2",
+          "ishistory_physics",
+          "phedu_bio",
+          "chemistry_ict",
+          "ag_hmath",
+        ];
+
+        let total = 0;
+        let pass = true;
+        let pointsSum = 0;
+        let count = 0;
+
+        keys.forEach((k) => {
+          const val = evaluateExpression(obj[k]);
+          obj[k] = Math.trunc(val); // truncate decimals
+          total += val;
+          const gradeInfo = gradeFromMarks(val);
+          pointsSum += gradeInfo.point;
+          if (val < 33) pass = false;
+          count++;
+        });
+
+        let cgpa = "0.00";
+        let grade = "F";
+
+        // if (pass) {
+        //   cgpa = (pointsSum / count).toFixed(2);
+        //   // Final grade based on CGPA
+        //   const gr = gradeFromMarks(pointsSum / count);
+        //   grade = gr.grade;
+        // }
+
+        if (pass) {
+          cgpa = (pointsSum / count).toFixed(2);
+          grade = gradeFromCGPA(parseFloat(cgpa));
+        }
+
+        return {
+          total: Math.trunc(total),
+          pass_fail: pass ? "Pass" : "Fail",
+          cgpa,
+          grade,
+        };
+      }
+
+      function calculateSummaryStats(data) {
+        let totalStudents = data.length;
+        let appeared = 0;
+        let passed = 0;
+        let gpa5 = 0;
+
+        data.forEach((student) => {
+          const subjects = [
+            "kuran_tajvid",
+            "akaid_fikah",
+            "hadis",
+            "arabic1",
+            "arabic2",
+            "gmath",
+            "english1",
+            "english2",
+            "bengali1",
+            "bengali2",
+            "ishistory_physics",
+            "phedu_bio",
+            "chemistry_ict",
+            "ag_hmath",
+          ];
+
+          // Count as appeared if any subject > 0
+          const hasAppeared = subjects.some((s) => parseFloat(student[s]) > 0);
+          if (hasAppeared) {
+            appeared++;
+
+            // Check pass status: all subjects must be >= 33
+            const allPassed = subjects.every(
+              (s) => parseFloat(student[s]) >= 33
+            );
+            if (allPassed) passed++;
+
+            // GPA 5 check
+            if (parseFloat(student.cgpa) === 5.0) gpa5++;
+          }
+        });
+
+        const percentage =
+          appeared > 0 ? ((passed / appeared) * 100).toFixed(2) + "%" : "0%";
+
+        // Update DOM
+        document.getElementById("totalStudents").textContent = totalStudents;
+        document.getElementById("appeared").textContent = appeared;
+        document.getElementById("passed").textContent = passed;
+        document.getElementById("percentage").textContent = percentage;
+        document.getElementById("gpa5").textContent = gpa5;
+      }
+
+      document
+        .getElementById("entryForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const fd = new FormData(e.target);
+          const data = {};
+          for (let [k, v] of fd.entries()) data[k] = v;
+          Object.assign(data, calcFields(data));
+
+          const action = editingRoll ? "update" : "create";
+          const res = await fetch(SCRIPT_URL + "?action=" + action, {
+            method: "POST",
+            body: JSON.stringify(data),
+          });
+          const rj = await res.json();
+          if (rj.status === "error") return alert(rj.message);
+          editingRoll = null;
+          e.target.reset();
+          fetchAll();
+        });
+
+      document.getElementById("clearBtn").addEventListener("click", () => {
+        editingRoll = null;
+        document.getElementById("entryForm").reset();
+      });
+
+      function renderTable(data) {
+        const tb = document.getElementById("tblBody");
+        const filter = document.getElementById("search").value.toLowerCase();
+
+        // Calculate summary stats
+        const appeared = data.length;
+        const passed = data.filter((r) => r.pass_fail === "Pass").length;
+        const percentage =
+          appeared > 0 ? ((passed / appeared) * 100).toFixed(2) : "0.00";
+
+        // Fix GPA 5 count
+        // const gpa5 = data.filter((r) => {
+        //   const cgpaVal =
+        //     typeof r.cgpa === "number" ? r.cgpa.toFixed(2) : r.cgpa;
+        //   return (cgpaVal === "5.00" || cgpaVal === "5") && r.grade === "A+";
+        // }).length;
+        const gpa5 = data.filter(
+          (r) => Number(r.cgpa) === 5 && r.grade === "A+"
+        ).length;
+
+        // Update the summary section
+        document.getElementById("totalStudents").textContent = allData.length;
+        document.getElementById("appeared").textContent = appeared;
+        document.getElementById("passed").textContent = passed;
+        document.getElementById("percentage").textContent = percentage + "%";
+        document.getElementById("gpa5").textContent = gpa5;
+
+        // Filter and assign merit to passed students
+        const passedStudents = data
+          .filter((r) => r.pass_fail === "Pass")
+          .sort((a, b) => b.total - a.total);
+
+        const meritMap = {};
+        passedStudents.forEach((r, i) => {
+          meritMap[r.roll] = i + 1;
+        });
+
+        tb.innerHTML = "";
+        data
+          .filter(
+            (r) =>
+              r.roll.toString().includes(filter) ||
+              r.s_name.toLowerCase().includes(filter)
+          )
+          .sort((a, b) => parseInt(a.roll) - parseInt(b.roll)) // display sorted by roll
+          .forEach((r) => {
+            const tr = document.createElement("tr");
+
+            const merit = r.pass_fail === "Pass" ? meritMap[r.roll] : "-";
+            let meritClass = "text-center text-gray-500";
+
+            if (r.pass_fail === "Pass") {
+              if (merit === 1) {
+                meritClass = "text-center font-bold text-red-700 bg-yellow-100";
+              } else if (merit === 2) {
+                meritClass =
+                  "text-center font-bold text-blue-700 bg-yellow-100";
+              } else if (merit === 3) {
+                meritClass =
+                  "text-center font-bold text-purple-700 bg-yellow-100";
+              } else {
+                meritClass = "bg-yellow-100 text-center font-bold text-sm";
+              }
+            }
+
+            tr.innerHTML = `
+        <td class="p-1">${r.roll}</td>
+        <td class="p-1">${r.s_name}</td>
+        <td class="p-1">${Math.trunc(r.total)}</td>
+        <td class="p-1">${r.pass_fail}</td>
+        <td class="p-1">${Math.trunc(r.kuran_tajvid)}</td>
+        <td class="p-1">${Math.trunc(r.akaid_fikah)}</td>
+        <td class="p-1">${r.hadis}</td>
+        <td class="p-1">${r.arabic1}</td>
+        <td class="p-1">${r.arabic2}</td>
+        <td class="p-1">${r.gmath}</td>
+        <td class="p-1">${r.english1}</td>
+        <td class="p-1">${r.english2}</td>
+        <td class="p-1">${r.bengali1}</td>
+        <td class="p-1">${r.bengali2}</td>
+        <td class="p-1">${Math.trunc(r.ishistory_physics)}</td>
+        <td class="p-1">${Math.trunc(r.phedu_bio)}</td>
+        <td class="p-1">${Math.trunc(r.chemistry_ict)}</td>
+        <td class="p-1">${Math.trunc(r.ag_hmath)}</td>
+        <td class="p-1">${r.cgpa}</td>
+        <td class="p-1">${r.grade}</td>
+        <td class="p-1 ${meritClass}">${merit}</td>
+        <td class="p-1">
+          <button class="edit text-blue-600 mr-2">Edit</button>
+          <button class="delete text-red-600 hidden sm:inline">Delete</button>
+        </td>
+      `;
+
+            tb.appendChild(tr);
+          });
+
+        calculateSummaryStats(data);
+      }
+
+      document
+        .getElementById("tblBody")
+        .addEventListener("click", async (e) => {
+          const row = e.target.closest("tr");
+          if (!row) return;
+
+          const roll = row.children[0].innerText; // roll is still in column 0
+          if (e.target.classList.contains("edit")) {
+            const item = allData.find((d) => d.roll == roll);
+            if (!item) return;
+
+            editingRoll = item.roll;
+            const form = document.getElementById("entryForm");
+            for (const [key, value] of Object.entries(item)) {
+              if (form.elements[key]) form.elements[key].value = value;
+            }
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+
+          if (e.target.classList.contains("delete")) {
+            if (!confirm("Are you sure?")) return;
+
+            try {
+              const res = await fetch(SCRIPT_URL + "?action=delete", {
+                method: "POST",
+                body: JSON.stringify({ roll }),
+              });
+              const rj = await res.json();
+              if (rj.status === "ok") {
+                // Option A: Re-fetch all data
+                //fetchAll();
+
+                // Option B: Remove the row immediately
+                row.remove();
+              } else {
+                alert("Delete failed: " + (rj.message || ""));
+              }
+            } catch (err) {
+              alert("Delete error: " + err.message);
+            }
+          }
+        });
+
+      document
+        .getElementById("search")
+        .addEventListener("input", () => renderTable(allData));
+      document.getElementById("printBtn").addEventListener("click", () => {
+        window.print();
+      });
+
+      fetchAll();
+    </script>
+  </body>
+</html>
