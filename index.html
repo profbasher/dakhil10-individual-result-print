@@ -126,10 +126,6 @@
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
-          <!-- Subject Input Template -->
-          <!-- Repeat for each subject field -->
-
-          <!-- Example: Kuran & Tajvid -->
           <div class="relative">
             <input
               type="text"
@@ -146,8 +142,6 @@
               Kuran & Tajvid
             </label>
           </div>
-
-          <!-- Copy-paste the block above for each subject below, updating name/id/label/placeholder -->
           <div class="relative">
             <input
               type="text"
@@ -532,13 +526,6 @@
         let cgpa = "0.00";
         let grade = "F";
 
-        // if (pass) {
-        //   cgpa = (pointsSum / count).toFixed(2);
-        //   // Final grade based on CGPA
-        //   const gr = gradeFromMarks(pointsSum / count);
-        //   grade = gr.grade;
-        // }
-
         if (pass) {
           cgpa = (pointsSum / count).toFixed(2);
           grade = gradeFromCGPA(parseFloat(cgpa));
@@ -639,12 +626,6 @@
         const percentage =
           appeared > 0 ? ((passed / appeared) * 100).toFixed(2) : "0.00";
 
-        // Fix GPA 5 count
-        // const gpa5 = data.filter((r) => {
-        //   const cgpaVal =
-        //     typeof r.cgpa === "number" ? r.cgpa.toFixed(2) : r.cgpa;
-        //   return (cgpaVal === "5.00" || cgpaVal === "5") && r.grade === "A+";
-        // }).length;
         const gpa5 = data.filter(
           (r) => Number(r.cgpa) === 5 && r.grade === "A+"
         ).length;
